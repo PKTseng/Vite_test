@@ -1,21 +1,34 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <h1>{{ name }}</h1>
+  <h1>{{ age }}</h1>
+  <button type="button" @click="changeInfo">更改訊息</button>
 </template>
 
+<script>
+import { ref } from 'vue';
+export default {
+  name: 'app',
+  setup() {
+    let name = ref('ken');
+    let age = ref('10');
+
+    function changeInfo() {
+      name.value = 'kevin';
+      age.value = '20';
+      console.log(name);
+      console.log(age);
+    }
+
+    return {
+      name,
+      age,
+      changeInfo,
+    };
+  },
+};
+</script>
+
+
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
