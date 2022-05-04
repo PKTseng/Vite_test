@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let person = {
+        name: 'ken',
+        age: 19,
+      };
+
+      // let p = {};
+      // Object.defineProperty(p, 'name', {
+      //   configurable: true,
+      //   get() {
+      //     //更改 name 屬性時會被調用
+      //     return person.name;
+      //   },
+      //   set(value) {
+      //     person.name = value;
+      //   },
+      // });
+      // Object.defineProperty(p, 'age', {
+      //   get() {
+      //     //更改 age 屬性時會被調用
+      //     return person.age;
+      //   },
+      //   set(value) {
+      //     person.age = value;
+      //   },
+      // });
+
+      // Proxy 意思是代理（代理對象,{}）
+      const p = new Proxy(person, {
+        get(target, propName) {
+          console.log(`讀取Ｐ變數的${propName}屬性`, target, propName);
+          return target[propName];
+        },
+        set(target, propName, value) {
+          console.log(`讀取Ｐ變數的${propName}屬性，頁面已更新`, target, propName, value);
+          target[propName] = value;
+        },
+
+        deleteProperty(target, propName) {
+          console.log(`刪除Ｐ變數的${propName}屬性，頁面已更新`, target, propName);
+          return delete target[propName];
+        },
+      });
+    </script>
+  </body>
+</html>
