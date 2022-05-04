@@ -1,43 +1,26 @@
 <template>
-  <h1>{{ person.name }}</h1>
-  <h1>{{ person.age }}</h1>
-
-  <h2>{{ person.job.type }}</h2>
-  <h2>{{ person.job.salary }}</h2>
-
-  <h2>{{ person.jobList }}</h2>
-  <button type="button" @click="changeInfo">更改訊息</button>
+  <Children @emitFatherMsg="emitFatherMsg" :msg="data.msg" :general="data.general"></Children>
 </template>
 
 <script>
-import { reactive, ref } from 'vue';
+import { reactive } from '@vue/reactivity';
+import Children from './components/Child.vue';
 export default {
   name: 'app',
+  components: { Children },
   setup() {
-    let person = reactive({
-      name: 'ken',
-      age: '12',
-
-      job: {
-        type: 'frontend',
-        salary: '3k',
-      },
-
-      jobList: ['frontend', 'backend', 'devOps'],
+    let data = reactive({
+      msg: 'hello',
+      general: 'boy',
     });
 
-    function changeInfo() {
-      person.name = 'kevin';
-      person.age = '20';
-      person.job.type = 'devOPssss';
-      person.job.salary = '200000';
-
-      person.jobList[0] = 'UI/UX';
+    function emitFatherMsg() {
+      alert('emitFatherMsg');
     }
 
     return {
-      person,
-      changeInfo,
+      data,
+      emitFatherMsg,
     };
   },
 };
