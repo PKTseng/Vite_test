@@ -1,5 +1,10 @@
 <template>
-  <Children @emitFatherMsg="emitFatherMsg" :msg="data.msg" :general="data.general"></Children>
+  <Children @emitFatherMsg="emitFatherMsg" :msg="data.msg" :general="data.general">
+    <!-- <p>test</p> -->
+    <template v-slot:testName1>
+      <p>test</p>
+    </template>
+  </Children>
 </template>
 
 <script>

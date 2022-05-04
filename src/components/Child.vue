@@ -2,6 +2,7 @@
   <h1>{{ person.name }}</h1>
   <h1>{{ person.age }}</h1>
   <button @click="emitMsg">emitMsg</button>
+  <slot></slot>
 </template>
 
 <script>
@@ -20,11 +21,13 @@ export default {
   setup(props, context) {
     console.log('props', props);
     console.log('context', context);
+    console.log('context', context.slots);
     let person = reactive({
       name: 'ken',
       age: '12',
     });
     function emitMsg() {
+      console.log(props);
       context.emit('emitFatherMsg', 'testMsg');
     }
 
