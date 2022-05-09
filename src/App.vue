@@ -1,12 +1,14 @@
 <template>
-  <Computed />
+  <!-- <Computed /> -->
+  <watchCourse />
 </template>
 
 <script>
-import Computed from './components/computed.vue';
+// import Computed from './components/computed.vue';
+import watchCourse from './components/watchCourse.vue';
 export default {
   name: 'app',
-  components: { Computed },
+  components: { watchCourse },
 };
 </script>
 
