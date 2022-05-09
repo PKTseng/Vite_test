@@ -43,7 +43,7 @@ export default {
     }
 
     function changeMsg() {
-      msg.value = msg.value + '!';
+      msg.value += '!';
     }
 
     return {
