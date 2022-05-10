@@ -1,60 +1,46 @@
 <template>
-  <h2>{{ total }}</h2>
+  <!-- <h2>{{ total }}</h2>
   <button @click="addTotalNum">+1</button>
 
   <br />
   <h2>{{ msg }}</h2>
-  <button @click="changeMsg">更改訊息</button>
+  <button @click="changeMsg">更改訊息</button> -->
+
+  <br />
+  <!-- <h2>Name: {{ object.name }}</h2>
+  <button @click="object.name += '～'">加入波浪符號</button> -->
+  <!-- <h2>Age: {{ object.age }}</h2> -->
+  <h2>salary: {{ object.job.salary.total }} K</h2>
+  <!-- <button @click="object.name += '～'">加入波浪符號</button> -->
+  <!-- <button @click="object.age++">age + 1</button> -->
+  <button @click="object.job.salary.total++">salary +1</button>
 </template>
 
 <script>
-import { ref, watch } from 'vue';
+import { reactive, watch } from 'vue';
 export default {
   name: 'app',
-  watch: {
-    // total(newValue, oldValue) {
-    //   console.log(`newValue=> ${newValue}`, `oldValue=> ${oldValue}`);
-    // },
-    // total: {
-    //   handler(newValue, oldValue) {
-    //     console.log(`newValue=> ${newValue}`, `oldValue=> ${oldValue}`);
-    //   },
-    //   immediate: true,
-    // },
-  },
   setup() {
-    let total = ref(0);
-    let msg = ref('原始為更改訊息');
-
-    // watch(total, (newValue, oldValue) => {
-    //   console.log(`newValue=> ${newValue}`, `oldValue=> ${oldValue}`);
-    // },{immediate: true});
-
-    // watch(msg, (newValue, oldValue) => {
-    //   console.log(`newValue=> ${newValue}`, `oldValue=> ${oldValue}`);
-    // },{immediate: true});
+    let object = reactive({
+      name: 'ken',
+      age: 18,
+      job: {
+        salary: {
+          total: 10,
+        },
+      },
+    });
 
     watch(
-      [total, msg],
+      () => object.job,
       (newValue, oldValue) => {
-        console.log(newValue, oldValue);
+        console.log(`newValue=> ${newValue}`, `oldValue=> ${oldValue}`);
       },
-      { immediate: true }
+      { deep: true }
     );
 
-    function addTotalNum() {
-      total.value++;
-    }
-
-    function changeMsg() {
-      msg.value += '!';
-    }
-
     return {
-      total,
-      msg,
-      addTotalNum,
-      changeMsg,
+      object,
     };
   },
 };
