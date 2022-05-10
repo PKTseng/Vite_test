@@ -28,15 +28,19 @@ export default {
 
     // watch(total, (newValue, oldValue) => {
     //   console.log(`newValue=> ${newValue}`, `oldValue=> ${oldValue}`);
-    // });
+    // },{immediate: true});
 
     // watch(msg, (newValue, oldValue) => {
     //   console.log(`newValue=> ${newValue}`, `oldValue=> ${oldValue}`);
-    // });
+    // },{immediate: true});
 
-    watch([total, msg], (newValue, oldValue) => {
-      console.log(`newValue=> ${newValue}`, `oldValue=> ${oldValue}`);
-    });
+    watch(
+      [total, msg],
+      (newValue, oldValue) => {
+        console.log(newValue, oldValue);
+      },
+      { immediate: true }
+    );
 
     function addTotalNum() {
       total.value++;
